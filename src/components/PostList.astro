@@ -1,0 +1,39 @@
+---
+interface Props {
+  posts: Array<{
+    slug: string;
+    data: {
+      title: string;
+      publishDate: Date;
+    };
+  }>;
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="posts">
+  {posts.map(post => (
+    <li>
+      <time>{post.data.publishDate.toISOString().split('T')[0]}</time>
+      <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .posts {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  .posts li {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+  time {
+    color: var(--text-muted);
+    font-family: monospace;
+  }
+</style>

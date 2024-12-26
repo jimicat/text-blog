@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/PostList.astro';
+import { getAllTags } from '../../utils/tags';
+
+export async function getStaticPaths() {
+  const tags = await getAllTags();
+  const posts = await getCollection('posts');
+  
+  return tags.map(({ tag }) => {
+    const tagPosts = posts.filter(post => post.data.tags.includes(tag))
+      .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+      .map(post => ({
+        slug: post.slug,
+        data: {
+          title: post.data.title || '',
+          publishDate: post.data.publishDate || new Date(),
+        }
+      }));
+    
+    return {
+      params: { tag },
+      props: { tag, posts: tagPosts }
+    };
+  });
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<Layout title={`${tag} - Text Blog`}>
+  <h1>Posts tagged "{tag}"</h1>
+  <PostList posts={posts} />
+  
+  <p class="back-link">
+    <a href="/tags">← View all tags</a>
+  </p>
+</Layout>
