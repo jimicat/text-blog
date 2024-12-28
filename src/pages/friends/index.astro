@@ -1,0 +1,151 @@
+---
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+
+interface Friend {
+    name: string;
+    avatar: string;
+    description: string;
+    link: string;
+}
+
+const friends: Friend[] = [
+    {
+        name: "张麦麦",
+        avatar: "https://maxchang.me/favicon.svg",
+        description: "我的影子想要去飞翔，我的人还在地上。",
+        link: "https://maxchang.me",
+    }
+
+];
+---
+
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+    <main>
+        <h1>友情链接</h1>
+        <p class="description">感谢以下朋友们的支持！欢迎交换友链 ❤️</p>
+
+        <div class="friends-grid">
+            {
+                friends.map((friend) => (
+                    <a
+                        href={friend.link}
+                        class="friend-card"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            src={friend.avatar}
+                            alt={friend.name}
+                            class="avatar"
+                        />
+                        <div class="info">
+                            <h2>{friend.name}</h2>
+                            <p>{friend.description}</p>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+        <div class="apply-section">
+            <p>如果您想要申请友链，请确保您的网站满足以下条件：</p>
+            <ul>
+                <li>1. 网站内容健康向上</li>
+                <li>2. 网站能够正常访问</li>
+                <li>3. 网站为个人博客</li>
+                <li>4. 网站已有一定数量的原创文章</li>
+            </ul>
+            
+            <p>如果您符合以上条件，欢迎通过以下格式<a href="https://forms.gle/WQgYQSHxfeVpr58BA" style="text-decoration:underline;">提交</a>友链申请：</p>
+            <ul>
+                <li>名称：您的博客名称</li>
+                <li>头像：您的头像链接</li>
+                <li>描述：简短的描述</li>
+                <li>链接：您的博客链接</li>
+            </ul>
+
+
+        </div>
+    </main>
+</Layout>
+
+<style>
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        margin-bottom: 1em;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+
+    .description {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .friends-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 两列 */
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .friend-card {
+        border: 1px solid;
+        border-radius: 12px;
+        padding: 0.5rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .friend-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .info h2 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .info p {
+        margin: 0.5rem 0 0;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    .apply-section {
+        border: 1px #63b3ed solid;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-top: 3rem;   
+    }
+
+    .apply-section h2 {
+        margin-top: 0;
+    }
+
+    .apply-section ul {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .apply-section pre {
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+    }
+</style>

@@ -2,11 +2,13 @@
 import Layout from '../../layouts/Layout.astro';
 import TagList from '../../components/TagList.astro';
 import { getAllTags } from '../../utils/tags';
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+
 
 const tags = await getAllTags();
 ---
 
-<Layout title="Tags - Text Blog">
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <h1>Tags</h1>
   <p>Browse posts by topic</p>
   

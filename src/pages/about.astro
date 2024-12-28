@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+
 ---
 
-<Layout title="About - Text Blog">
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<h1>About</h1>
 	<p>This is a simple, text-focused blog created with Astro. The focus is on content and readability, without unnecessary distractions.</p>
 	

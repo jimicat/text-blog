@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostList from '../../components/PostList.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+
 
 const posts = await getCollection('posts');
 const sortedPosts = posts
@@ -15,7 +17,7 @@ const sortedPosts = posts
   }));
 ---
 
-<Layout title="Blog Posts">
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <h1>Blog Posts</h1>
   <PostList posts={sortedPosts} />
 </Layout>

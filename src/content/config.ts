@@ -7,6 +7,7 @@ export const collections = {
       publishDate: z.date(),
       description: z.string().optional(),
       tags: z.array(z.string()).default([]),
+      image: z.string().default("/static/blog-placeholder.png")
     }),
   }),
 };

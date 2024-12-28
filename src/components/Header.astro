@@ -1,0 +1,17 @@
+---
+import { EMAIL } from "../consts";
+import ThemeToggle from "./ThemeToggle.astro";
+---
+<header>
+    <nav>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/posts">Posts</a>
+        <a href="/tags">Tags</a>
+        <a href="/friends">Friends</a>
+        <a href="https://www.travellings.cn/go.html">Travelling</a>
+        <a href={`mailto:${EMAIL}`}>Email</a>
+      </div>
+      <ThemeToggle />
+    </nav>
+  </header>

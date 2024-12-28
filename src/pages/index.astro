@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import PostList from '../components/PostList.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+
 
 const posts = await getCollection('posts');
 const sortedPosts = posts
@@ -16,7 +18,7 @@ const sortedPosts = posts
   }));
 ---
 
-<Layout title="Text Blog">
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <p>偶尔想到的一些内容会做记录，题材不限于技术文章，更多的是一些个人的只言片语。博主平时喜欢运动，以糊代码为乐趣，偶尔也靠读些哲学书籍来打发无聊。</p>
   
   <h2>Latest Posts</h2>

@@ -1,14 +1,6 @@
 import { defineConfig } from 'astro/config';
-
+import { SITE_URL } from './src/consts';
 export default defineConfig({
-  output: 'static',
-  build: {
-    inlineStylesheets: 'auto'
-  },
-  vite: {
-    build: {
-      modulePreload: true,
-      cssCodeSplit: true
-    }
-  }
+  site: SITE_URL,
+  integrations: []
 });
